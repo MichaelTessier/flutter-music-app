@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/models/navigation_item.dart';
+import 'package:music_app/pages/music_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   List<NavigationItem> navigationItems = [
-    NavigationItem(label: 'Music', iconData: Icons.music_note, page: Container()),
+    NavigationItem(label: 'Music', iconData: Icons.music_note, page: const MusicPage()),
     NavigationItem(label: 'Favorites', iconData: Icons.whatshot_outlined, page: Container()),
     NavigationItem(label: 'Search', iconData: Icons.search, page: Container()),
   ];
@@ -55,7 +56,7 @@ class HomePageState extends State<HomePage> {
           ),
         )
       ),
-      body: const Center(child: Text('Content')),
+      body: navigationItems[selectedNavItemIndex].page,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedNavItemIndex,
         items: navigationItems.map((item) => item.barItem).toList(),
