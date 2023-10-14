@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/widgets/album_list.dart';
 import 'package:music_app/widgets/artist_list.dart';
 
 class MusicPage extends StatefulWidget {
@@ -13,15 +14,17 @@ class MusicPageState extends State<MusicPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          ArtistList()
-          // Music List
-          // Genre List
-        ],
-      ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            ArtistList(),
+            AlbumList(),
+            // Genre List
+          ],
+        ),
+      )
     );
   }
 }

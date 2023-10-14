@@ -14,8 +14,10 @@ class ListSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: Theme.of(context).textTheme.titleLarge),
-        const Padding(padding: EdgeInsets.only(bottom: 10)),
-        widget
+        const Padding(padding: EdgeInsets.only(top: 10)),
+        widget,
+        const Padding(padding: EdgeInsets.only(top: 30)),
+
       ],
     );
   }
