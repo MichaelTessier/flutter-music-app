@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/models/album.dart';
+import 'package:music_app/models/playlist.dart';
+import 'package:music_app/pages/playlist_page.dart';
 
 class AlbumCard extends StatelessWidget {
   final Album album;
@@ -10,6 +12,14 @@ class AlbumCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double size = 120;
     return InkWell(
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (BuildContext context) => PlayListPage(
+              type: PlayListType.album,
+              queryID: album.id,
+            )
+        )
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,

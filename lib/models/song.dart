@@ -6,19 +6,19 @@ import 'package:music_app/models/media_type.dart';
 class Song {
   int id;
   String title;
-  int artistId;
-  int albumId;
+  Artist artist;
+  Album album;
   String path;
-  int genreId;
+  Genre genre;
   MediaType mediaType;
 
   Song({
     required this.id,
     required this.title,
-    required this.artistId,
-    required this.albumId,
+    required this.artist,
+    required this.album,
     required this.path,
-    required this.genreId,
+    required this.genre,
     required this.mediaType,
   });
 }

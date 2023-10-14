@@ -5,15 +5,15 @@ import 'package:music_app/models/song.dart';
 class Album {
   int id;
   String name;
-  int artistId;
+  Artist artist;
   String coverUrl;
-  int genreId;
+  Genre genre;
 
   Album({
     required this.id,
     required this.name,
-    required this.artistId,
+    required this.artist,
     required this.coverUrl,
-    required this.genreId,
+    required this.genre,
   });
 }
