@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/widgets/album_list.dart';
 import 'package:music_app/widgets/artist_list.dart';
+import 'package:music_app/widgets/genre_list.dart';
 
 class MusicPage extends StatefulWidget {
 
@@ -20,6 +21,7 @@ class MusicPageState extends State<MusicPage> {
         child: Column(
           children: [
             ArtistList(),
+            GenreList(),
             AlbumList(),
             // Genre List
           ],

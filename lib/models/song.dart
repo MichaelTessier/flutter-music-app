@@ -9,7 +9,7 @@ class Song {
   int artistId;
   int albumId;
   String path;
-  Genre genre;
+  int genreId;
   MediaType mediaType;
 
   Song({
@@ -18,7 +18,7 @@ class Song {
     required this.artistId,
     required this.albumId,
     required this.path,
-    required this.genre,
+    required this.genreId,
     required this.mediaType,
   });
 }

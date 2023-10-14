@@ -15,8 +15,7 @@ class AlbumList extends StatelessWidget {
       title: 'Albums',
       widget: GridView.builder(
           shrinkWrap: true,
-          primary: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 20,

@@ -7,13 +7,13 @@ class Album {
   String name;
   int artistId;
   String coverUrl;
-  Genre genre;
+  int genreId;
 
   Album({
     required this.id,
     required this.name,
     required this.artistId,
     required this.coverUrl,
-    required this.genre,
+    required this.genreId,
   });
 }

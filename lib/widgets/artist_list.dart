@@ -20,7 +20,7 @@ class ArtistList extends StatelessWidget {
             itemCount: artistList.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                  padding: EdgeInsets.only(right: 20),
+                  padding: const EdgeInsets.only(right: 20),
                 child: ArtistCard(artist: artistList[index]),
               );
             }
