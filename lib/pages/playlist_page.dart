@@ -5,11 +5,13 @@ import 'package:music_app/models/song.dart';
 import 'package:music_app/services/song_service.dart';
 import 'package:music_app/widgets/album_playlist_hero.dart';
 import 'package:music_app/widgets/album_playlist_item.dart';
+import 'package:music_app/widgets/genre_playlist_hero.dart';
+import 'package:music_app/widgets/genre_playlist_item.dart';
 import 'package:music_app/widgets/playlist_template.dart';
 
 class PlayListPage extends StatefulWidget {
-  PlayListType type;
-  int queryID;
+  final PlayListType type;
+  final int queryID;
 
   PlayListPage({
     super.key,
@@ -26,13 +28,13 @@ class PlayListPage extends StatefulWidget {
   final Map<PlayListType, Function> playlistHero = {
     PlayListType.album: (int id) => AlbumPlayListHero(id: id),
     PlayListType.artist: (int id) => AlbumPlayListHero(id: id), // TODO
-    PlayListType.genre: (int id) => AlbumPlayListHero(id: id), // TODO
+    PlayListType.genre: (int id) => GenrePlayListHero(id: id),
   };
 
   final Map<PlayListType, Function> playlistListItem = {
     PlayListType.album: (Song song) => AlbumPlayListItem(song: song),
-    PlayListType.artist: (Song song) => AlbumPlayListItem(song: song), // TODO
-    PlayListType.genre: (Song song) => AlbumPlayListItem(song: song), // TODO
+    PlayListType.artist: (Song song) => GenrePlayListItem(song: song), // TODO
+    PlayListType.genre: (Song song) => GenrePlayListItem(song: song),
   };
 
   @override
@@ -63,8 +65,8 @@ class PlaylistPageState extends State<PlayListPage> {
               : Container(),
           listItem: (index) {
             return widget.playlistListItem[widget.type] != null
-                ? widget.playlistListItem[widget.type]?.call(songList[index])
-                : Container();
+              ? widget.playlistListItem[widget.type]?.call(songList[index])
+              : Container();
           },
           songList: songList
         ),

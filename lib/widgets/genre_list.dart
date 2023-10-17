@@ -12,7 +12,7 @@ class GenreList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListSection(
-      title: 'Artists',
+      title: 'Genres',
       widget: SizedBox(
         height: 90,
         child: ListView.builder(

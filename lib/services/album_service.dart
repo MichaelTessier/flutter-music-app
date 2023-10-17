@@ -6,7 +6,7 @@ class AlbumService {
     return albumData;
   }
 
-  Future<Album> fetchAlbum(int id) {
+  Future<Album> fetchById(int id) {
     Album album = albumData.firstWhere((album) => album.id == id);
 
     return Future.delayed(const Duration(milliseconds: 500))

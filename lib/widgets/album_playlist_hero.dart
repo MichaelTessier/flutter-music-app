@@ -4,9 +4,9 @@ import 'package:music_app/models/album.dart';
 import 'package:music_app/services/album_service.dart';
 
 class AlbumPlayListHero extends StatefulWidget {
-  int id;
+  final int id;
 
-  AlbumPlayListHero({
+  const AlbumPlayListHero({
     super.key,
     required this.id,
   });
@@ -21,7 +21,7 @@ class AlbumPlayListHeroState extends State<AlbumPlayListHero> {
   @override
   void initState() {
     super.initState();
-    futureAlbum = AlbumService().fetchAlbum(widget.id);
+    futureAlbum = AlbumService().fetchById(widget.id);
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/models/genre.dart';
+import 'package:music_app/models/playlist.dart';
+import 'package:music_app/pages/playlist_page.dart';
 
 class GenreCard extends StatelessWidget {
   final Genre genre;
@@ -9,6 +11,14 @@ class GenreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (BuildContext context) => PlayListPage(
+                type: PlayListType.genre,
+                queryID: genre.id,
+              )
+          )
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
