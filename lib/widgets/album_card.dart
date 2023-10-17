@@ -11,6 +11,7 @@ class AlbumCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double size = 120;
+
     return InkWell(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(

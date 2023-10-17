@@ -4,9 +4,9 @@ import 'package:music_app/models/playlist.dart';
 import 'package:music_app/models/song.dart';
 import 'package:music_app/services/song_service.dart';
 import 'package:music_app/widgets/album_playlist_hero.dart';
-import 'package:music_app/widgets/album_playlist_item.dart';
+import 'package:music_app/widgets/artist_playlist_hero.dart';
+import 'package:music_app/widgets/playlist_song_item.dart';
 import 'package:music_app/widgets/genre_playlist_hero.dart';
-import 'package:music_app/widgets/genre_playlist_item.dart';
 import 'package:music_app/widgets/playlist_template.dart';
 
 class PlayListPage extends StatefulWidget {
@@ -27,14 +27,14 @@ class PlayListPage extends StatefulWidget {
 
   final Map<PlayListType, Function> playlistHero = {
     PlayListType.album: (int id) => AlbumPlayListHero(id: id),
-    PlayListType.artist: (int id) => AlbumPlayListHero(id: id), // TODO
+    PlayListType.artist: (int id) => ArtistPlayListHero(id: id),
     PlayListType.genre: (int id) => GenrePlayListHero(id: id),
   };
 
   final Map<PlayListType, Function> playlistListItem = {
-    PlayListType.album: (Song song) => AlbumPlayListItem(song: song),
-    PlayListType.artist: (Song song) => GenrePlayListItem(song: song), // TODO
-    PlayListType.genre: (Song song) => GenrePlayListItem(song: song),
+    PlayListType.album: (Song song) => PlayListSongItem(song: song),
+    PlayListType.artist: (Song song) => PlayListSongItem(song: song, hasAlbum: true, hasGenre: true), // TODO
+    PlayListType.genre: (Song song) => PlayListSongItem(song: song, hasAlbum: true),
   };
 
   @override
