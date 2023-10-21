@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:music_app/models/song.dart';
 
 class PlaylistTemplate extends StatelessWidget {
-
   final List<Song> songList;
   final Widget hero;
   final Widget Function(int) listItem;
@@ -22,12 +21,13 @@ class PlaylistTemplate extends StatelessWidget {
         Expanded(
           child: ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                return listItem(index);
+                return index == songList.length
+                    ? Container(height: 90) // TODO: widget?
+                    : listItem(index);
               },
-              itemCount: songList.length
-          )
-        )
-
+              itemCount: songList.length + 1
+          ),
+        ),
       ],
     );
   }
