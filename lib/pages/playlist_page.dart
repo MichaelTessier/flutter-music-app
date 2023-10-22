@@ -28,6 +28,7 @@ class PlayListPage extends StatefulWidget {
 class PlaylistPageState extends State<PlayListPage> {
   late Future<List<Song>> futureSongList;
   Song? currentSong;
+  int? songPlayingId;
 
   final Map<PlayListType, Function> playlistRequest = {
     PlayListType.album:  (int id) => SongService().fetchByAlbum(id),
@@ -42,9 +43,24 @@ class PlaylistPageState extends State<PlayListPage> {
   };
 
   final Map<PlayListType, Function> playlistListItem = {
-    PlayListType.album: (Song song, onSongSelect) => PlayListSongItem(song: song, onSongSelect: () => onSongSelect(song)),
-    PlayListType.artist: (Song song, Function onSongSelect) => PlayListSongItem(song: song, hasAlbum: true, hasGenre: true, onSongSelect: () => onSongSelect(song)),
-    PlayListType.genre: (Song song, Function onSongSelect) => PlayListSongItem(song: song, hasAlbum: true, onSongSelect: () => onSongSelect(song)),
+    PlayListType.album: (Song song, onSongSelect, Song currentSong) => PlayListSongItem(
+      song: song,
+      onSongSelect: () => onSongSelect(song),
+      isPlaying: currentSong.id == song.id
+    ),
+    PlayListType.artist: (Song song, Function onSongSelect, Song currentSong) => PlayListSongItem(
+        song: song,
+        hasAlbum: true,
+        hasGenre: true,
+        onSongSelect: () => onSongSelect(song),
+        isPlaying: currentSong.id == song.id
+    ),
+    PlayListType.genre: (Song song, Function onSongSelect, Song currentSong) => PlayListSongItem(
+        song: song,
+        hasAlbum: true,
+        onSongSelect: () => onSongSelect(song),
+        isPlaying: currentSong.id == song.id
+    ),
   };
 
   @override
@@ -74,7 +90,8 @@ class PlaylistPageState extends State<PlayListPage> {
                     return playlistListItem[widget.type] != null
                         ? playlistListItem[widget.type]?.call(
                           songList[index],
-                          (song) => setState(() => currentSong = songList[index])
+                          (song) => setState(() => currentSong = songList[index]),
+                          currentSong
                         )
                         : Container();
                   },
@@ -82,7 +99,9 @@ class PlaylistPageState extends State<PlayListPage> {
               ),
             ),
             currentSong != null
-                ? PlayerFloatingBar(song: currentSong!)
+                ? PlayerFloatingBar(
+                  song: currentSong!,
+                )
                 : Container()
         ],
       )

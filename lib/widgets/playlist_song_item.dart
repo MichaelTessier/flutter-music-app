@@ -5,9 +5,10 @@ import 'package:music_app/widgets/album_thumbnail.dart';
 
 class PlayListSongItem extends StatelessWidget {
   final Song song;
+  final Function() onSongSelect;
   final bool hasGenre;
   final bool hasAlbum;
-  final Function() onSongSelect;
+  final bool isPlaying;
 
   const PlayListSongItem({
     super.key,
@@ -15,7 +16,7 @@ class PlayListSongItem extends StatelessWidget {
     required this.onSongSelect,
     this.hasAlbum = false,
     this.hasGenre = false,
-
+    this.isPlaying = false,
   });
 
   @override
@@ -42,7 +43,10 @@ class PlayListSongItem extends StatelessWidget {
                       children: [
                         Text(
                             song.title,
-                            overflow: TextOverflow.ellipsis
+                            overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: isPlaying ? Colors.orange : null
+                          ),
                         ),
                         const Padding(padding: EdgeInsets.all(3)),
                         Row(

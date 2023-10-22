@@ -6,7 +6,10 @@ import 'package:music_app/widgets/album_thumbnail.dart';
 class PlayerFloatingBar extends StatefulWidget {
   final Song song;
 
-  const PlayerFloatingBar({super.key, required this.song});
+  const PlayerFloatingBar({
+    super.key,
+    required this.song,
+  });
 
   @override
   PlayerFloatingBarState createState () => PlayerFloatingBarState();
@@ -22,8 +25,6 @@ class PlayerFloatingBarState extends State<PlayerFloatingBar> {
   late Duration audioPlayerPosition;
   Duration? songDuration = const Duration(seconds: 0);
   double audioPlayerDurationPercent = 0;
-
-
 
   @override
   void initState() {
@@ -65,9 +66,13 @@ class PlayerFloatingBarState extends State<PlayerFloatingBar> {
       }
     });
 
+    audioPlayer.onDurationChanged.listen((Duration duration) {
+      songDuration = duration;
+    });
+
     audioPlayer.onPositionChanged.listen((Duration position) {
       setState(() {
-        if(position == null || songDuration == null) return;
+        if(songDuration == null) return;
 
         audioPlayerPosition = position;
         audioPlayerDurationPercent = toPercent(position.inSeconds.toDouble(), songDuration!.inSeconds.toDouble());
@@ -83,7 +88,6 @@ class PlayerFloatingBarState extends State<PlayerFloatingBar> {
 
   @override
   void didUpdateWidget(covariant PlayerFloatingBar oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     audioPlayerInit();
     audioPlayerPlay();
@@ -119,9 +123,9 @@ class PlayerFloatingBarState extends State<PlayerFloatingBar> {
                       Future
                           .delayed(const Duration(milliseconds: 200))
                           .then((onValue) {
-                        if(isPaused) return;
-                        if(!isPlaying) setState(() => isFetching = true);
-                      });
+                            if(isPaused) return;
+                            if(!isPlaying) setState(() => isFetching = true);
+                          });
 
                       isPlaying
                           ? audioPlayer.pause()
@@ -153,20 +157,20 @@ class PlayerFloatingBarState extends State<PlayerFloatingBar> {
     return (part / total) * 100;
   }
 
-  void audioPlayerInit() {
-    audioPlayer.setSourceUrl(widget.song.path).then((song) => {
-      audioPlayer.getDuration().then((duration) {
-        songDuration = duration;
-      })
-    });
+  void audioPlayerInit() async {
+    await audioPlayer.setSourceUrl(widget.song.path);
+    Duration? duration  = await audioPlayer.getDuration();
+    songDuration = duration;
+
   }
 
-  void audioPlayerDispose () {
-    audioPlayer.dispose();
+  void audioPlayerDispose() async {
+    await audioPlayer.dispose();
     // TODO use cache and clean it
   }
 
-  void audioPlayerPlay() {
-    audioPlayer.play(UrlSource(widget.song.path));
+  void audioPlayerPlay() async {
+    await audioPlayer.play(UrlSource(widget.song.path));
+
   }
 }
