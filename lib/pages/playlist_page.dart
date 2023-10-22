@@ -54,7 +54,6 @@ class PlaylistPageState extends State<PlayListPage> {
     futureSongList.then((value) => setState(() => currentSong = value.first));
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,10 +82,7 @@ class PlaylistPageState extends State<PlayListPage> {
               ),
             ),
             currentSong != null
-                ? Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: PlayerFloatingBar(song: currentSong!),
-                )
+                ? PlayerFloatingBar(song: currentSong!)
                 : Container()
         ],
       )

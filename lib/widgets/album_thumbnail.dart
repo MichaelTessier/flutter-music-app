@@ -15,8 +15,8 @@ class AlbumThumbnail extends StatelessWidget {
       height: albumSize,
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: NetworkImage(album.coverUrl),
-              fit: BoxFit.cover
+            image: NetworkImage(album.coverUrl),
+            fit: BoxFit.cover
           ),
           borderRadius: BorderRadius.circular(5)
       ),
